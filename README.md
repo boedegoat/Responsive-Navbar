@@ -4,12 +4,18 @@ Framework hasil iseng-iseng.
 
 Navbar akan muncul dari kanan ketika hamburger menu diklik pada ukuran mobile devices.
 
+
+
 ## Responsive Breakout : 768px
 
 Yaitu pada ukuran tablet ke bawah.
 
+
+
+
 ## Template
 
+#### Struktur navbar
 ```html
 <nav class="nav-bar">
   <h2 class="nav-brand"><a href="#home">mybrand</a></h2>
@@ -22,6 +28,24 @@ Yaitu pada ukuran tablet ke bawah.
   <div class="hamburger"></div>
 </nav>
 ```
+
+
+
+#### Hubungkan dengan script JS
+
+```html
+<script src="responsive-navbar/navbar.js"
+```
+
+
+
+#### Jangan lupa tambahkan @import pada main scss anda
+
+```scss
+@import 'responsive-navbar/navbar.scss'
+```
+
+
 
 ## Modifying
 
