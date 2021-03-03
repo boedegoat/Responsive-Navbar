@@ -1,4 +1,5 @@
-// target .nav-list
+// target nav
+const nav_bar = document.querySelector('.nav-bar');
 const nav_list = document.querySelector('.nav-bar .nav-list');
 const nav_item = document.querySelectorAll('.nav-bar .nav-item');
 
@@ -30,18 +31,48 @@ if (typeof hamburger != 'undefined') {
     hamburger.appendChild(hamburger_line);
   }
 
+  // make body darken
+  const bodyDarken = document.createElement('div');
+  bodyDarken.classList.add('bodyDarken');
+  bodyDarken.style.position = 'fixed';
+  bodyDarken.style.zIndex = '0';
+  bodyDarken.style.top = '0';
+  bodyDarken.style.left = '0';
+  bodyDarken.style.height = '100%';
+  bodyDarken.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+  bodyDarken.style.transition = 'background-color 0.5s';
+  nav_bar.appendChild(bodyDarken);
+
+  // slide state
+  function onSlide() {
+    nav_list.classList.add('slide');
+    nav_list.style.transform = 'translateX(0)';
+    bodyDarken.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    bodyDarken.style.zIndex = '1';
+    bodyDarken.style.width = '100%';
+    slide = true;
+  }
+  function endSlide() {
+    nav_list.classList.remove('slide');
+    nav_list.style.transform = 'translateX(100%)';
+    bodyDarken.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    bodyDarken.style.zIndex = '0';
+    bodyDarken.style.width = '0';
+    slide = false;
+  }
+
   // slider function
   let slide = false;
   hamburger.addEventListener('click', () => {
     if (!slide) {
-      nav_list.classList.add('slide');
-      nav_list.style.transform = 'translateX(0)';
-      slide = true;
+      onSlide();
     } else {
-      nav_list.classList.remove('slide');
-      nav_list.style.transform = 'translateX(100%)';
-      slide = false;
+      endSlide();
     }
+  });
+
+  bodyDarken.addEventListener('click', () => {
+    endSlide();
   });
 }
 
@@ -59,12 +90,14 @@ function onMobileScreen() {
   nav_list.classList.remove('slide');
   nav_list.style.flexDirection = 'column';
   nav_list.style.position = 'fixed';
+  nav_list.style.zIndex = '2';
   nav_list.style.top = '0';
   nav_list.style.right = '0';
   nav_list.style.height = '100%';
   nav_list.style.transform = 'translateX(100%)';
   hamburger.style.display = 'flex';
 }
+
 const mobile = window.matchMedia('(max-width: 768px)');
 mobile.addEventListener('change', function () {
   if (mobile.matches) {
