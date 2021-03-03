@@ -1,7 +1,6 @@
 // target nav
 const nav_bar = document.querySelector('.nav-bar');
 const nav_list = document.querySelector('.nav-bar .nav-list');
-const nav_item = document.querySelectorAll('.nav-bar .nav-item');
 
 // target class hamburger
 const hamburger = document.querySelector('.nav-bar .hamburger');
